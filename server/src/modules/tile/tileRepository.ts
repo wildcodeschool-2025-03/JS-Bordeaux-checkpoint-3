@@ -1,8 +1,10 @@
+import { RowDataPacket } from "mysql2";
 import databaseClient from "../../../database/client";
 
 import type { Result, Rows } from "../../../database/client";
 
 type Tile = {
+  length: number;
   id: number;
   type: string;
   coord_x: number;
@@ -22,7 +24,11 @@ class TileRepository {
   }
 
   async readByCoordinates(coordX: number, coordY: number) {
-    // your code here
+    const [rows] = await databaseClient.query<Rows>(
+      "select * from tile where coord_x = ? and coord_y = ?",
+      [coordX, coordY],
+    );
+    return rows;
   }
 
   async getRandomIsland() {
