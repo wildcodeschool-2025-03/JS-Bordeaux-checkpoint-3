@@ -14,7 +14,23 @@ const browse: RequestHandler = async (req, res, next) => {
     res.status(200).json(rows);
   } catch (error) {
     next(error);
-  } // your code here
+  }
+};
+
+const edit: RequestHandler = async (req, res, next) => {
+  try {
+    const boatId = req.params.id;
+    const { coord_x, coord_y } = req.body;
+
+    await pool.query("UPDATE tile SET coord_x = ?, coord_y = ? WHERE id = ?", [
+      coord_x,
+      coord_y,
+      boatId,
+    ]);
+    res.status(200).end();
+  } catch (error) {
+    next(error);
+  }
 };
 
 const validate: RequestHandler = (req, res, next) => {
@@ -25,9 +41,9 @@ const validate: RequestHandler = (req, res, next) => {
   }
   next();
 };
-// your code here
 
 export default {
   browse,
+  edit,
   validate,
 };
