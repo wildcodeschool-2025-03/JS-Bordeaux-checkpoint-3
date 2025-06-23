@@ -13,18 +13,18 @@ import tileRepository from "../src/modules/tile/tileRepository";
 
 describe("The tileActions.validate middleware", () => {
   test("TileRepository has a readByCoordinates method", async () => {
-    expect(typeof tileRepository.readByCoordinates).toBe("function");
+    expect(typeof tileRepository.findByCoordinates).toBe("function");
   });
   test("the readByCoordinates method in TileRepository takes 2 parameters 'coordX' and 'coordY'", async () => {
-    expect(tileRepository.readByCoordinates).toHaveLength(2);
+    expect(tileRepository.findByCoordinates).toHaveLength(2);
   });
   test("the readByCoordinates method in TileRepository returns an array with tiles for valid coordinates", async () => {
-    const tiles = await tileRepository.readByCoordinates(0, 0);
+    const tiles = await tileRepository.findByCoordinates(0, 0);
 
     expect(tiles).toHaveLength(1);
   });
   test("the readByCoordinates method in TileRepository returns an empty array for bad coordinates", async () => {
-    const tiles = await tileRepository.readByCoordinates(666, 666);
+    const tiles = await tileRepository.findByCoordinates(666, 666);
 
     expect(tiles).toHaveLength(0);
   });

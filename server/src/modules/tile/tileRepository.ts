@@ -11,7 +11,7 @@ type Tile = {
 };
 
 class TileRepository {
-  async readAll() {
+  async findAll() {
     // Execute the SQL SELECT query to retrieve all tiles from the "tile" table
     const [rows] = await databaseClient.query<Rows>(
       "select * from tile order by coord_y, coord_x",
@@ -21,7 +21,7 @@ class TileRepository {
     return rows as Tile[];
   }
 
-  async readByCoordinates(coordX: number, coordY: number) {
+  async findByCoordinates(coordX: number, coordY: number) {
     // your code here
   }
 
