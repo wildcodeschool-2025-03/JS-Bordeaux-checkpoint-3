@@ -16,7 +16,20 @@ const browse: RequestHandler = async (req, res, next) => {
 };
 
 const edit: RequestHandler = async (req, res, next) => {
-  // your code here
+  try {
+    const id = Number(req.params.id);
+    const coord_x = Number(req.body.coord_x);
+    const coord_y = Number(req.body.coord_y);
+
+    const boatToUpdate = { id, coord_x, coord_y };
+
+    const updatedBoat = await boatRepository.update(boatToUpdate);
+    if (updatedBoat) {
+      res.status(204).json(updatedBoat);
+    }
+  } catch (error) {
+    next(error);
+  }
 };
 
 export default {
