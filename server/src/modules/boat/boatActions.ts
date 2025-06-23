@@ -16,15 +16,14 @@ const browse: RequestHandler = async (req, res, next) => {
 };
 
 const edit: RequestHandler = async (req, res, next) => {
-  try {
+  /* try {
     const rows = { 
       boatid: Number(req.params.id), 
       coord_x: Number(req.body.coord_x),
     coord_y: Number(req.body.coord_y),};
    const 
+};*/
 };
-
-
 
 export default {
   browse,
